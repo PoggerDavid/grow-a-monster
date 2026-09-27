@@ -41,7 +41,7 @@
 |---|---|
 | `output/intro.mp4`, `output/outro.mp4` | 배경 포함 완성본 (H.264, 바로 편집 타임라인에 배치) |
 | `output/intro_alpha.webm`, `output/outro_alpha.webm` | **투명 배경** 오버레이 (VP9 알파). 캡컷·프리미어(2023+)·다빈치 등에서 촬영 영상 위에 얹어 사용 |
-| `output/*_alpha.mov` | 투명 배경 ProRes 4444 (용량이 커서 저장소에는 미포함, 별도 전달) |
+| `output/*_alpha.mov` | 투명 배경 ProRes 4444. 용량(50~130MB)이 커서 저장소·채팅 전달에서 제외 — 필요 시 아래 `node render.mjs outro --alpha` 로 1분 내 재생성 |
 | `intro.html`, `outro.html` | 편집 가능한 소스. 브라우저로 열면 바로 재생됨 |
 | `assets/` | 브로셔에서 추출한 조감도·투시도 크롭, 배경 제거한 두산 We've 로고 |
 
