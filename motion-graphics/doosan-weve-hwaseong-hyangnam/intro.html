@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>인트로 · 두산위브 에듀파크 화성향남</title>
+<link rel="stylesheet" href="mg-base.css">
+<style>
+  /* ---------- 장면 A : 주목(Attention) 훅 ---------- */
+  #sceneA { position: absolute; inset: 0; }
+  #kicker { top: 560px; }
+  #kicker .pill { font-size: 40px; padding: 16px 44px; letter-spacing: -0.01em; }
+  #h1a { top: 690px; font-size: 104px; color: #fff; }
+  #big { top: 805px; font-size: 280px; color: var(--yellow); line-height: 1; letter-spacing: -0.03em; white-space: nowrap; }
+  #bang { display: inline-block; font-size: 170px; color: #fff; transform-origin: 20% 85%; margin-left: 10px; vertical-align: baseline; }
+  .sq { font-family: 'Noto Sans KR', sans-serif; font-weight: 900; font-size: .82em; }
+  #ring { top: 960px; left: 540px; width: 40px; height: 40px; margin: -20px 0 0 -20px; border: 14px solid var(--yellow);
+          border-radius: 50%; }
+  #sub { top: 1210px; }
+  #sub .bar { display: inline-block; padding: 22px 54px; font-size: 50px; font-weight: 700; background: rgba(10,26,60,.78);
+              border-left: 12px solid var(--yellow); }
+  #sub .bar b { color: var(--yellow); font-weight: 900; }
+  #note { top: 1330px; font-size: 30px; font-weight: 400; opacity: .75; }
+
+  /* ---------- 장면 B : 흥미(Interest) 브랜드 락업 ---------- */
+  #sceneB { position: absolute; inset: 0; display: none; }
+  #logo { top: 600px; left: 50%; width: 560px; margin-left: -280px; transform-origin: 50% 50%; }
+  #title { top: 850px; font-size: 128px; color: #fff; white-space: nowrap; }
+  #title span { display: inline-block; will-change: transform, opacity; }
+  #uline { top: 1010px; left: 50%; width: 700px; height: 14px; margin-left: -350px; background: var(--yellow);
+           transform-origin: 50% 50%; }
+  #pills { top: 1080px; left: 0; right: 0; text-align: center; }
+  #pills .row { margin: 0 0 26px; }
+  #pills .pill { font-size: 44px; padding: 20px 50px; background: rgba(255,255,255,.12); color: #fff;
+                 border: 3px solid rgba(255,255,255,.35); backdrop-filter: blur(6px); }
+  #pills .pill b { color: var(--yellow); font-weight: 900; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="bg" id="bg" style="background-image:url('assets/bg_intro.jpg')"></div>
+  <div class="bg-overlay" id="ov" style="background:linear-gradient(180deg, rgba(10,26,60,.62) 0%, rgba(10,26,60,.42) 45%, rgba(10,26,60,.92) 100%)"></div>
+
+  <div id="sceneA">
+    <div id="kicker" class="abs center"><span class="pill y">화성시 최초 두산건설 · MOU 체결 확정</span></div>
+    <div id="h1a" class="abs center hbold txt-shadow">향남 새 아파트 84<span class="sq">㎡</span>가</div>
+    <div id="big" class="abs center hbold txt-shadow">3억대<span id="bang">?!</span></div>
+    <div id="ring" class="abs"></div>
+    <div id="sub" class="abs center"><span class="bar">향남 리딩단지 시세 대비 <b>60~80%</b> 수준</span></div>
+    <div id="note" class="abs center">1차 조합원 공급가 · 평당 900만원대 기준</div>
+  </div>
+
+  <div id="sceneB">
+    <img id="logo" class="abs" src="assets/logo_doosan_weve.png" alt="두산 We've">
+    <div id="title" class="abs center hbold txt-shadow">에듀파크 화성향남</div>
+    <div id="uline" class="abs"></div>
+    <div id="pills" class="abs">
+      <div class="row"><span class="pill"><b>2,110세대</b> · 21개동 대단지</span></div>
+      <div class="row"><span class="pill">향남역(서해선·신안산선) <b>차량 5분</b></span></div>
+      <div class="row"><span class="pill">화성고 <b>도보 15분</b> 학세권</span></div>
+    </div>
+  </div>
+
+  <div class="slash" id="slash"></div>
+</div>
+
+<script src="mg-core.js"></script>
+<script>
+(() => {
+  const { E, tw, lerp } = MG;
+  const $ = id => document.getElementById(id);
+  const stage = $('stage'), bg = $('bg'), ov = $('ov');
+  const A = $('sceneA'), B = $('sceneB');
+  const kicker = $('kicker'), h1a = $('h1a'), big = $('big'), bang = $('bang'), ring = $('ring'), sub = $('sub'), note = $('note');
+  const logo = $('logo'), title = $('title'), uline = $('uline'), slash = $('slash');
+  const pills = [...document.querySelectorAll('#pills .row')];
+
+  // 글자 단위 분해 (타이틀 한 글자씩 등장)
+  const chars = [...title.textContent].map(ch => { const s = document.createElement('span'); s.textContent = ch === ' ' ? ' ' : ch; return s; });
+  title.textContent = ''; chars.forEach(s => title.appendChild(s));
+
+  // 임팩트용 카메라 흔들림
+  const shake = (t, s, amp, dur) => { const p = (t - s) / dur; if (p < 0 || p > 1) return [0, 0];
+    const k = amp * (1 - p); return [k * Math.sin(p * 46), k * Math.cos(p * 37)]; };
+  // 슬램인(큰 글씨가 앞에서 꽂히는 효과)
+  const slam = (el, p, from = 1.8, blur = 18) => { el.style.opacity = p; el.style.transform = `scale(${lerp(from, 1, p)})`; el.style.filter = `blur(${(1 - p) * blur}px)`; };
+  const rise = (el, p, dy = 60) => { el.style.opacity = p; el.style.transform = `translateY(${(1 - p) * dy}px)`; };
+
+  const DUR = 3.5;
+  MG.define(DUR, t => {
+    /* --- 배경 켄번즈 --- */
+    const kb = tw(t, 0, 3.2, E.out);
+    bg.style.transform = `scale(${lerp(1.22, 1.04, kb)}) translateY(${lerp(30, 0, kb)}px)`;
+    ov.style.opacity = 1;
+
+    /* --- 장면 전환 시점 --- */
+    const wipe = tw(t, 1.75, 0.42, E.inout);
+    const inB = wipe >= 0.5;
+    A.style.display = inB ? 'none' : 'block';
+    B.style.display = inB ? 'block' : 'none';
+    slash.style.transform = `rotate(-18deg) translateX(${lerp(-2800, 2800, wipe)}px)`;
+    slash.style.display = (wipe > 0 && wipe < 1) ? 'block' : 'none';
+
+    if (!inB) {
+      /* ===== 장면 A : 주목 ===== */
+      rise(kicker, tw(t, 0.05, 0.35, E.back), 40);
+      slam(h1a, tw(t, 0.18, 0.32, E.out), 1.5, 12);
+      const pb = tw(t, 0.42, 0.34, E.out);
+      slam(big, pb, 2.4, 24);
+      // 충격 링 확산
+      const pr = tw(t, 0.55, 0.6, E.out);
+      ring.style.opacity = pr > 0 ? (1 - pr) : 0;
+      ring.style.transform = `scale(${lerp(0.5, 22, pr)})`;
+      ring.style.borderWidth = `${lerp(14, 2, pr)}px`;
+      // ?! 튀어나오기
+      const pq = tw(t, 0.72, 0.45, E.elastic);
+      bang.style.opacity = tw(t, 0.72, 0.1);
+      bang.style.transform = `scale(${pq}) rotate(${lerp(-25, 8, pq)}deg)`;
+      rise(sub, tw(t, 0.95, 0.4, E.out), 70);
+      rise(note, tw(t, 1.15, 0.4, E.out), 30);
+      // 흔들림
+      const [sx, sy] = shake(t, 0.46, 22, 0.35);
+      A.style.transform = `translate(${sx}px, ${sy}px)`;
+    } else {
+      /* ===== 장면 B : 흥미 ===== */
+      const pl = tw(t, 1.98, 0.5, E.back);
+      logo.style.opacity = tw(t, 1.98, 0.15);
+      logo.style.transform = `scale(${lerp(0.4, 1, pl)})`;
+      chars.forEach((s, i) => {
+        const p = tw(t, 2.12 + i * 0.045, 0.38, E.back);
+        s.style.opacity = Math.min(1, p * 1.5);
+        s.style.transform = `translateY(${(1 - p) * 90}px) rotate(${(1 - p) * 8}deg)`;
+      });
+      const pu = tw(t, 2.5, 0.4, E.expo);
+      uline.style.transform = `scaleX(${pu})`;
+      pills.forEach((r, i) => {
+        const p = tw(t, 2.58 + i * 0.14, 0.45, E.back);
+        r.style.opacity = Math.min(1, p * 1.4);
+        r.style.transform = `translateX(${(1 - p) * -120}px)`;
+      });
+    }
+
+    /* --- 아웃 : 위로 스와이프 (본편으로 컷) --- */
+    const po = tw(t, 3.2, 0.3, E.in);
+    stage.style.transform = `translateY(${-1920 * po}px)`;
+  });
+})();
+</script>
+</body>
+</html>

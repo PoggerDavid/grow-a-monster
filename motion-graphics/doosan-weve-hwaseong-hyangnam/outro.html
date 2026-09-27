@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>아웃트로 · 두산위브 에듀파크 화성향남</title>
+<link rel="stylesheet" href="mg-base.css">
+<style>
+  /* ---------- 장면 C : 욕구(Desire) 3가지 이유 ---------- */
+  #sceneC { position: absolute; inset: 0; }
+  #ctag { top: 430px; }
+  #ctag .pill { font-size: 38px; padding: 14px 40px; }
+  #chead { top: 520px; font-size: 118px; color: #fff; }
+  #cards { position: absolute; top: 700px; left: 80px; right: 80px; }
+  .card { position: relative; height: 200px; margin-bottom: 26px; padding: 30px 40px 0 150px; border-radius: 28px;
+          background: rgba(10,26,60,.72); border: 2px solid rgba(255,255,255,.18); backdrop-filter: blur(8px);
+          box-shadow: 0 20px 50px rgba(0,0,0,.35); overflow: hidden; }
+  .card .num { position: absolute; left: 36px; top: 46px; width: 90px; height: 90px; border-radius: 50%;
+               background: var(--yellow); color: var(--navy); font-family: 'Black Han Sans'; font-size: 54px;
+               line-height: 92px; text-align: center; }
+  .card .lab { font-size: 36px; font-weight: 700; opacity: .85; letter-spacing: -0.01em; }
+  .card .val { font-family: 'Black Han Sans'; font-size: 84px; line-height: 1.1; color: var(--yellow); margin-top: 6px; white-space: nowrap; }
+  .card .val small { font-size: 52px; color: #fff; margin-left: 10px; }
+
+  /* ---------- 장면 D : 행동(Action) CTA ---------- */
+  #sceneD { position: absolute; inset: 0; display: none; }
+  #dtag { top: 470px; font-size: 44px; font-weight: 700; opacity: .9; }
+  #dhead { top: 535px; font-size: 118px; color: #fff; }
+  #cta { top: 720px; left: 90px; width: 900px; height: 176px; border-radius: 88px; background: var(--yellow);
+         color: var(--navy); font-family: 'Black Han Sans'; font-size: 72px; line-height: 176px; text-align: center;
+         box-shadow: 0 24px 60px rgba(255,216,74,.35); overflow: hidden; transform-origin: 50% 50%; white-space: nowrap; }
+  #cta .shine { position: absolute; top: -40px; left: 0; width: 160px; height: 260px; background: rgba(255,255,255,.55);
+                transform: skewX(-25deg); filter: blur(6px); }
+  #cta .q { color: #C62828; }
+  #contact { top: 930px; font-size: 46px; font-weight: 700; }
+  #contact b { color: var(--yellow); font-weight: 900; }
+  #contact .tel { font-family: 'Black Han Sans'; font-size: 60px; letter-spacing: .02em; display: block; margin-top: 6px; }
+
+  /* 구독 · 좋아요 · 알림 */
+  #social { top: 1160px; left: 0; right: 0; height: 200px; }
+  .sbtn { position: absolute; top: 0; height: 120px; border-radius: 60px; font-size: 44px; font-weight: 900; line-height: 120px;
+          text-align: center; box-shadow: 0 16px 40px rgba(0,0,0,.35); transform-origin: 50% 50%; white-space: nowrap; }
+  #subBtn { left: 90px; width: 330px; background: var(--red); color: #fff; }
+  #subBtn.on { background: #fff; color: #333; }
+  #likeBtn { left: 450px; width: 250px; background: rgba(255,255,255,.14); border: 3px solid rgba(255,255,255,.4); }
+  #bellBtn { left: 730px; width: 260px; background: rgba(255,255,255,.14); border: 3px solid rgba(255,255,255,.4); }
+  .sbtn svg { width: 54px; height: 54px; vertical-align: -12px; margin-right: 8px; }
+  #hand { position: absolute; left: 260px; top: 60px; width: 110px; height: 110px; transform-origin: 30% 20%; }
+
+  #dlogo { top: 1370px; left: 50%; width: 340px; margin-left: -170px; padding: 16px 26px; background: #fff; border-radius: 22px;
+           box-shadow: 0 12px 30px rgba(0,0,0,.35); }
+  #dlogo img { width: 100%; display: block; }
+  #dname { top: 1500px; font-size: 40px; font-weight: 900; letter-spacing: .02em; }
+  #disc { top: 1556px; font-size: 24px; font-weight: 400; opacity: .6; padding: 0 60px; line-height: 1.5; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="bg" id="bg" style="background-image:url('assets/bg_outro.jpg')"></div>
+  <div class="bg-overlay" id="ov" style="background:linear-gradient(180deg, rgba(10,26,60,.78) 0%, rgba(10,26,60,.62) 50%, rgba(10,26,60,.95) 100%)"></div>
+
+  <!-- 장면 C -->
+  <div id="sceneC">
+    <div id="ctag" class="abs center"><span class="pill y">지금이 저평가 구간</span></div>
+    <div id="chead" class="abs center hbold txt-shadow">왜 지금일까요?</div>
+    <div id="cards">
+      <div class="card"><div class="num">1</div><div class="lab">1차 조합원 공급가</div><div class="val">평당 <span id="n1">0</span>만원대</div></div>
+      <div class="card"><div class="num">2</div><div class="lab">화성 롯데캐슬 시그니처(예상 분양가) 대비</div><div class="val"><span id="n2">0</span>% 수준<small>약 절반</small></div></div>
+      <div class="card"><div class="num">3</div><div class="lab">서해선 · 신안산선(계획) 향남역</div><div class="val">차량 <span id="n3">0</span>분<small>더블 역세권</small></div></div>
+    </div>
+  </div>
+
+  <!-- 장면 D -->
+  <div id="sceneD">
+    <div id="dtag" class="abs center">가입 자격 · 분담금 · 일정, 궁금하신 점은</div>
+    <div id="dhead" class="abs center hbold txt-shadow">지금 바로 상담 예약</div>
+    <div id="cta" class="abs">댓글에 <span class="q">“상담”</span> 남겨주세요<div class="shine"></div></div>
+    <div id="contact" class="abs center">프로필 링크 · 전화 문의<span class="tel">031-353-4230</span></div>
+
+    <div id="social" class="abs">
+      <div id="subBtn" class="sbtn">구독</div>
+      <div id="likeBtn" class="sbtn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M2 21h4V9H2v12zm20-11c0-1.1-.9-2-2-2h-6.3l1-4.6v-.3c0-.4-.2-.8-.4-1.1L13.2 1 6.6 7.6C6.2 7.9 6 8.4 6 9v10c0 1.1.9 2 2 2h9c.8 0 1.5-.5 1.8-1.2l3-7.1c.1-.2.2-.5.2-.7v-2z"/></svg>좋아요</div>
+      <div id="bellBtn" class="sbtn"><svg id="bellIco" viewBox="0 0 24 24" fill="currentColor" style="transform-origin:50% 10%"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.1-1.6-5.6-4.5-6.3V4c0-.8-.7-1.5-1.5-1.5S10.5 3.2 10.5 4v.7C7.6 5.4 6 7.9 6 11v5l-2 2v1h16v-1l-2-2z"/></svg>알림</div>
+      <svg id="hand" viewBox="0 0 64 64"><path d="M22 60c-6 0-9-3-11-8L6 40c-1-3 1-6 4-6 2 0 3 1 4 2l4 6V14a4 4 0 0 1 8 0v18h2V10a4 4 0 0 1 8 0v22h2V14a4 4 0 0 1 8 0v18h2V20a4 4 0 0 1 8 0v24c0 10-6 16-16 16H22z" fill="#fff" stroke="#0A1A3C" stroke-width="3" stroke-linejoin="round"/></svg>
+    </div>
+
+    <div id="dlogo" class="abs"><img src="assets/logo_doosan_weve.png" alt="두산 We've"></div>
+    <div id="dname" class="abs center">두산위브 에듀파크 화성향남</div>
+    <div id="disc" class="abs center">본 영상은 지역주택조합 조합원 모집 광고이며, 사업 일정·내용은 인허가 과정에서 변경될 수 있습니다.</div>
+  </div>
+
+  <div class="slash" id="slash"></div>
+</div>
+
+<script src="mg-core.js"></script>
+<script>
+(() => {
+  const { E, tw, lerp, fmt } = MG;
+  const $ = id => document.getElementById(id);
+  const stage = $('stage'), bg = $('bg');
+  const C = $('sceneC'), D = $('sceneD'), slash = $('slash');
+  const ctag = $('ctag'), chead = $('chead'), cards = [...document.querySelectorAll('.card')];
+  const n1 = $('n1'), n2 = $('n2'), n3 = $('n3');
+  const dtag = $('dtag'), dhead = $('dhead'), cta = $('cta'), shine = cta.querySelector('.shine'), contact = $('contact');
+  const social = $('social'), subBtn = $('subBtn'), likeBtn = $('likeBtn'), bellBtn = $('bellBtn'), bellIco = $('bellIco'), hand = $('hand');
+  const dlogo = $('dlogo'), dname = $('dname'), disc = $('disc');
+
+  const rise = (el, p, dy = 60) => { el.style.opacity = p; el.style.transform = `translateY(${(1 - p) * dy}px)`; };
+  const slam = (el, p, from = 1.6, blur = 14) => { el.style.opacity = p; el.style.transform = `scale(${lerp(from, 1, p)})`; el.style.filter = `blur(${(1 - p) * blur}px)`; };
+
+  const DUR = 6.0;
+  MG.define(DUR, t => {
+    /* 배경 켄번즈 (천천히 줌아웃) */
+    const kb = tw(t, 0, 6, E.lin);
+    bg.style.transform = `scale(${lerp(1.16, 1.02, kb)})`;
+
+    /* 인 : 네이비 슬래시로 등장 (본편에서 컷) */
+    const win = tw(t, 0, 0.45, E.inout);
+    slash.className = 'slash navy';
+    slash.style.display = (win > 0 && win < 1) ? 'block' : 'none';
+    slash.style.transform = `rotate(-18deg) translateX(${lerp(-2800, 2800, win)}px)`;
+    stage.style.opacity = t < 0.02 ? 0 : 1;
+
+    /* 장면 전환 C → D (2.55s, 노란 슬래시) */
+    const w2 = tw(t, 2.55, 0.42, E.inout);
+    if (w2 > 0) { slash.className = 'slash'; slash.style.display = (w2 < 1) ? 'block' : 'none';
+                  slash.style.transform = `rotate(-18deg) translateX(${lerp(-2800, 2800, w2)}px)`; }
+    const inD = w2 >= 0.5;
+    C.style.display = inD ? 'none' : 'block';
+    D.style.display = inD ? 'block' : 'none';
+
+    if (!inD) {
+      /* ===== 장면 C : 욕구 ===== */
+      rise(ctag, tw(t, 0.25, 0.35, E.back), 40);
+      slam(chead, tw(t, 0.35, 0.35), 1.5, 12);
+      const counts = [[n1, 900, 0], [n2, 53, 0], [n3, 5, 0]];
+      cards.forEach((c, i) => {
+        const s = 0.6 + i * 0.28;
+        const p = tw(t, s, 0.5, E.back);
+        c.style.opacity = Math.min(1, p * 1.4);
+        c.style.transform = `translateX(${(1 - p) * 220}px)`;
+        const [el, target] = counts[i];
+        const pc = tw(t, s + 0.15, 0.7, E.expo);
+        el.textContent = fmt(target * pc);
+      });
+    } else {
+      /* ===== 장면 D : 행동 ===== */
+      rise(dtag, tw(t, 2.8, 0.35), 30);
+      slam(dhead, tw(t, 2.88, 0.38), 1.5, 12);
+      // CTA 버튼 : 튀어나온 뒤 계속 맥동
+      const pc = tw(t, 3.05, 0.5, E.back);
+      const pulse = 1 + 0.035 * Math.sin((t - 3.55) * 6.5) * (t > 3.55 ? 1 : 0);
+      cta.style.opacity = Math.min(1, pc * 1.5);
+      cta.style.transform = `scale(${pc * pulse})`;
+      const sh = ((t - 3.6) % 1.6) / 1.6;   // 1.6초마다 빛 스윕
+      shine.style.transform = `translateX(${lerp(-260, 1100, t > 3.6 ? sh : 0)}px) skewX(-25deg)`;
+      shine.style.opacity = t > 3.6 ? 1 : 0;
+      rise(contact, tw(t, 3.3, 0.4), 40);
+
+      // 소셜 버튼 등장
+      const ps = tw(t, 3.5, 0.45, E.back);
+      social.style.opacity = Math.min(1, ps * 1.5);
+      social.style.transform = `translateY(${(1 - ps) * 80}px)`;
+      // 손가락이 구독 버튼을 탭 → 구독중
+      const ph = tw(t, 3.9, 0.45, E.out);            // 손 등장/이동
+      const tap = tw(t, 4.35, 0.18, E.inout);          // 누르기
+      const tapped = t >= 4.45;
+      hand.style.opacity = ph > 0 ? Math.min(1, ph * 2) * (1 - tw(t, 5.0, 0.4)) : 0;
+      hand.style.transform = `translate(${lerp(140, 0, ph)}px, ${lerp(120, 0, ph)}px) scale(${tap < 0.5 ? lerp(1, 0.85, tap * 2) : lerp(0.85, 1, (tap - 0.5) * 2)}) rotate(-15deg)`;
+      subBtn.className = 'sbtn' + (tapped ? ' on' : '');
+      subBtn.textContent = tapped ? '✓ 구독중' : '구독';
+      const pb = tw(t, 4.45, 0.5, E.elastic);
+      subBtn.style.transform = `scale(${tapped ? lerp(0.85, 1, pb) : (tap < 0.5 ? lerp(1, 0.92, tap * 2) : 0.92)})`;
+      // 좋아요 튕김, 알림 종 흔들림 (탭 이후 순차)
+      const pl = tw(t, 4.75, 0.55, E.elastic);
+      likeBtn.style.transform = `scale(${t >= 4.75 ? lerp(1.35, 1, pl) : 1})`;
+      likeBtn.style.background = t >= 4.75 ? 'rgba(255,255,255,.28)' : '';
+      const ring = tw(t, 5.05, 0.8, E.lin);
+      bellIco.style.transform = `rotate(${Math.sin(ring * Math.PI * 6) * 22 * (1 - ring)}deg)`;
+      bellBtn.style.background = t >= 5.05 ? 'rgba(255,255,255,.28)' : '';
+
+      rise(dlogo, tw(t, 3.7, 0.4), 30);
+      rise(dname, tw(t, 3.8, 0.4), 30);
+      disc.style.opacity = tw(t, 4.0, 0.5) * 0.6;
+    }
+  });
+})();
+</script>
+</body>
+</html>

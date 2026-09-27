@@ -1,0 +1,37 @@
+/* 공통 스타일 · 1080×1920 (9:16 쇼츠) */
+@font-face { font-family: 'Noto Sans KR'; font-weight: 400; src: url('fonts/noto-sans-kr-korean-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Noto Sans KR'; font-weight: 700; src: url('fonts/noto-sans-kr-korean-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Noto Sans KR'; font-weight: 900; src: url('fonts/noto-sans-kr-korean-900-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Black Han Sans'; font-weight: 400; src: url('fonts/black-han-sans-korean-400-normal.woff2') format('woff2'); }
+
+:root {
+  --navy: #0A1A3C;      /* 브로셔 기본 네이비 */
+  --navy-2: #12285C;
+  --blue: #1B4FD8;      /* 두산 We've 블루 */
+  --blue-2: #3B7BFF;
+  --yellow: #FFD84A;    /* 브로셔 강조 옐로 */
+  --yellow-2: #FFC400;
+  --white: #FFFFFF;
+  --red: #FF2D55;
+  --w: 1080px; --h: 1920px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: var(--w); height: var(--h); overflow: hidden; background: #000; }
+html.alpha, html.alpha body { background: transparent; }
+body { font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif; color: var(--white);
+       -webkit-font-smoothing: antialiased; }
+#stage { position: absolute; inset: 0; width: var(--w); height: var(--h); overflow: hidden; transform-origin: 50% 50%; }
+.abs { position: absolute; }
+.bg { position: absolute; inset: 0; background-size: cover; background-position: center; will-change: transform; }
+.alpha .bg, .alpha .bg-overlay { display: none; }
+.bg-overlay { position: absolute; inset: 0; }
+.hbold { font-family: 'Black Han Sans', 'Noto Sans KR', sans-serif; font-weight: 400; letter-spacing: -0.01em; line-height: 1.05; }
+.pill { display: inline-block; padding: 14px 40px; border-radius: 999px; font-weight: 900; }
+.pill.y { background: var(--yellow); color: var(--navy); }
+.pill.b { background: var(--blue); color: #fff; }
+.txt-shadow { text-shadow: 0 6px 30px rgba(0,0,0,.45); }
+.center { left: 0; right: 0; text-align: center; }
+/* 노란 대각선 슬래시(장면 전환) */
+.slash { position: absolute; top: -600px; left: 0; width: 1500px; height: 3200px; background: var(--yellow);
+         transform-origin: 50% 50%; transform: rotate(-18deg) translateX(-2800px); }
+.slash.navy { background: var(--navy); }
